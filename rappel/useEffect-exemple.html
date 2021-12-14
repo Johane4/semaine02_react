@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+      
+        const CONTAINER = document.getElementById('root');
+
+        // EXEMPLE 1
+        // Code qui s'éxecute à chaque rendu soit plusieurs fois
+        //  const App = () => {
+        //     const [count, setCount] = React.useState(0);
+        //     React.useEffect(() => {
+        //         setTimeout(() => {
+        //              setCount(count + 1)
+        //         }, 1000);
+        //     }) // sans second argument
+        // }
+
+        // EXEMPLE 2
+        // Code qui s'éxecute au premier rendu soit une fois
+        // const App = () => {
+        //     const [count, setCount] = React.useState(0);
+        //     React.useEffect(() => {
+        //         setTimeout(() => {
+        //              setCount(count + 1)
+        //         }, 1000);
+        //     }, []) // grâce au tableau vide en second argument
+
+        // }
+
+        const App = () => {
+            const [count, setCount] = React.useState(0);
+
+            React.useEffect(() => {
+                let time = setTimeout(() => {
+                    setCount(count + 1)
+                }, 1000);
+                
+                return () => {
+                    clearTimeout(time);
+                }
+                // Permet de d'arrêter le timer et de nettoyer tous les effets de bords
+                // qui tourneraient encore en fond (gain au niveau des ressources, évite effet de boucle)
+            }, [])
+            // appel au premier rendu grace []
+            
+            return(
+                <div>
+                    <h1>Rendu {count} fois</h1>
+                </div>
+            )
+        }
+
+        // const App = () => {
+        //     const [count, setCount] = React.useState(0);
+        //     const [multi, setMulti] = React.useState(0);
+
+        //     React.useEffect(() => {
+        //         setMulti(count * 3)         
+        //     }, [count])
+        //     // On cherche à vérifier si la variable a été mise à jour (en 2ème argument)pour
+        //     // que la fonction setMulti se déclenche
+                
+
+        //     return(
+        //         <div>
+        //             <p>{count}</p>
+        //             <button onClick={() => setCount(count + 1)}>Calcul</button>
+        //             <p>Résultat: {multi}</p>
+        //         </div>
+        //     )
+        // }
+
+        
+
+    ReactDOM.render(
+        <App />,
+        CONTAINER
+    );
+    </script>
+</body>
+
+</html>

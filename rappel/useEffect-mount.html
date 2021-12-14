@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+      
+        const CONTAINER = document.getElementById('root');
+
+        // class App extends React.Component {
+        //   constructor(props) {
+        //     super(props);
+
+        //     this.state = {
+        //       count: 0
+        //     }
+
+        //     this.counter = this.counter.bind(this);
+        //   }
+
+        //   counter() {
+
+        //     this.setState({ 
+        //       count: this.state.count + 1,
+              
+        //     })
+        //     console.log(`Cliqué ${this.state.count} fois`);
+            
+        //   }
+
+        //   render() {
+        //     return(
+        //       <div>
+        //         <button onClick={this.counter}>cliquez</button>
+        //       </div>
+        //     )
+        //   }
+        // }
+
+        const App = () => {
+          const [counter, setCounter] = React.useState(0);
+
+          function newCounter() {
+            setCounter(counter + 1);
+            console.log(`Cliqué ${counter} fois`)
+          }
+
+          return(
+            <div>
+              <button onClick={() => newCounter()}>cliquez</button>
+            </div>
+          )
+
+        }
+
+    ReactDOM.render(
+        <App />,
+        CONTAINER
+    );
+    </script>
+</body>
+
+</html>
