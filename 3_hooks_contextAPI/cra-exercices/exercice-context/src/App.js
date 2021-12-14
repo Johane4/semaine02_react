@@ -1,14 +1,12 @@
-import './App.css';
 import Container from './components/Container';
-
+ 
  const App = () => {
-
-    return (
-        <div className="container">
+     return (
+         <div>
             <Container />
-        </div>
-    )
-}
-
-
+         </div>
+     )
+ }
+ 
 export default App;
+ 
