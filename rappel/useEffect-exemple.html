@@ -16,28 +16,46 @@
         const CONTAINER = document.getElementById('root');
 
         // EXEMPLE 1
-        // Code qui s'éxecute à chaque rendu soit plusieurs fois
-        //  const App = () => {
+        // Code qui s'éxcute à chaque rendu, soit plusieurs fois
+        // const App = () => {
         //     const [count, setCount] = React.useState(0);
+
         //     React.useEffect(() => {
         //         setTimeout(() => {
-        //              setCount(count + 1)
-        //         }, 1000);
-        //     }) // sans second argument
+        //             setCount(count + 1)
+        //             console.log(count);
+        //         }, 1000)
+        //     }) // sans aucun argument
+
+        //     return(
+        //         <div>
+        //             <h1>Rendu {count}</h1>
+        //         </div>
+        //     )
         // }
 
         // EXEMPLE 2
-        // Code qui s'éxecute au premier rendu soit une fois
+        // Code qui s'execute au premier rendu uniquement, soit une seule fois
         // const App = () => {
         //     const [count, setCount] = React.useState(0);
+
         //     React.useEffect(() => {
         //         setTimeout(() => {
-        //              setCount(count + 1)
-        //         }, 1000);
-        //     }, []) // grâce au tableau vide en second argument
+        //             setCount(count + 1)
+        //             console.log(count);
+        //         }, 1000)
+        //     }, []) // avec tableau vide en second argument
 
+        //     return(
+        //         <div>
+        //             <h1>Rendu {count}</h1>
+        //         </div>
+        //     )
         // }
 
+        // EXEMPLE NETTOYAGE
+        // Permet de nettoyer les effets de bords avec chaque nouvel effet et MAJ
+        // tableau vide en second argument pour lancer l'effet une fois
         const App = () => {
             const [count, setCount] = React.useState(0);
 
@@ -45,38 +63,35 @@
                 let time = setTimeout(() => {
                     setCount(count + 1)
                 }, 1000);
-                
+
                 return () => {
                     clearTimeout(time);
                 }
-                // Permet de d'arrêter le timer et de nettoyer tous les effets de bords
-                // qui tourneraient encore en fond (gain au niveau des ressources, évite effet de boucle)
             }, [])
-            // appel au premier rendu grace []
-            
+
             return(
                 <div>
-                    <h1>Rendu {count} fois</h1>
+                    <h1>Rendu {count}</h1>
                 </div>
             )
         }
 
+        // EXEMPLE AVEC ÉCOUTE D'UNE VARIABLE EN DÉPENDANCE
         // const App = () => {
         //     const [count, setCount] = React.useState(0);
         //     const [multi, setMulti] = React.useState(0);
 
         //     React.useEffect(() => {
-        //         setMulti(count * 3)         
+        //         setMulti(count *3)
+        //         console.log(count);
+        //         console.log(multi);
         //     }, [count])
-        //     // On cherche à vérifier si la variable a été mise à jour (en 2ème argument)pour
-        //     // que la fonction setMulti se déclenche
-                
 
         //     return(
         //         <div>
-        //             <p>{count}</p>
+        //             <h1>Rendu {count}</h1>
         //             <button onClick={() => setCount(count + 1)}>Calcul</button>
-        //             <p>Résultat: {multi}</p>
+        //             <p>Resultat: {multi}</p>
         //         </div>
         //     )
         // }
