@@ -1,4 +1,4 @@
-// Le combienReducers permet de récupérer en une 
+// Le combineReducers permet de récupérer en une 
 // fois le résulat de plusieurs reducers
 
 
