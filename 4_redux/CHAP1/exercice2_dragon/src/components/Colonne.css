@@ -1,0 +1,7 @@
+.Col-main {
+  width: 50%;
+}
+.Col-main * {
+  margin: 2rem;
+  padding: 1 rem;
+}
