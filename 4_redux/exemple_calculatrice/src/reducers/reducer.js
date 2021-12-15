@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 number1: '', number2: '',
-                message: `Addition ${state.number1} + ${state.number2}`,
+                message: `Addition ${state.number1} + ${state.number2} = `,
                 result: Number(state.number1) + Number(state.number2)
             }
 
@@ -45,7 +45,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 number1: '', number2: '',
-                message: `Multiplication ${state.number1} x ${state.number2}`,
+                message: `Multiplication ${state.number1} x ${state.number2} = `,
                 result: Number(state.number1) * Number(state.number2)
             }
 

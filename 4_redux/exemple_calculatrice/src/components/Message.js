@@ -6,7 +6,7 @@ const Message = ({ message, result }) => {
 
   return (
     <div>
-      <p>{message} = {result}</p>
+      <p>{message} {result}</p>
     </div>
   );
 }
