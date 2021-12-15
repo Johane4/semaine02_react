@@ -12,7 +12,7 @@ const initialState = {
     dragons: [
         'André',
         'Hubert',
-        'Mireille'
+        'Mireille',
     ],
     dragon: '',
     count: 3,
@@ -61,8 +61,42 @@ const reducer = (state = initialState, action) => {
                 dragon: ''
             }
         
-        // Manque delete, reverse
+        case DELETE_DRAGON:
+        dragon = action.payload;
+        dragons = [ ...state.dragons ] ;
+
+        if (checkDragonExists(dragon, dragons) === false)
+            return {
+                ...state,
+                message: `Le dragon ${dragon} que vous essayez de supprimer n'existe pas `,
+                dragon: ''
+            }
+
+        dragons = dragons.filter(d => d !== dragon);
+
+        return {
+            ...state,
+            dragons,
+            message: `votre dragon ${dragon} a bien été supprimé`,
+            count: state.count - 1
+        }
+
+        case REVERSE_DRAGON_LIST:
+            //copie des dragons pour ne pas faire muter le state
+            dragons = [...state.dragons];
+
+            dragons.sort( Math.random() - .5);
+
+            return {
+                ...state,
+                dragons
+            }
+
+        default:
+            return state;
     }
+    
+
 }
 
 export default reducer;
