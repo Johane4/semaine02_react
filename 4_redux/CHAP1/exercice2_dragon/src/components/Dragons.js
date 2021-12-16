@@ -1,22 +1,32 @@
-import { useSelector } from 'react-redux';
+import React from 'react';
+import {
+    useSelector
+} from 'react-redux';
+
 import Dragon from './Dragon';
 
 const Dragons = () => {
+    // vous devez récupérer spécifiquement la clés dragon correspondante à ce reducer
+    // dans cette appli nous avions 2 reducers différents
+    const { dragons } = useSelector(state => state.dragonReducer );
 
-    const { dragons } = useSelector(state => state.dragonReducer);
+    console.log(dragons)
 
     if (dragons.length > 0)
         return (
-            <div>
-                {dragons.map((dragon, i) => 
-                    <Dragon key={i} dragon={dragon}
+            <div className="Dragons-principal">
+                {dragons.map((dragon, i) => (
+                    <Dragon
+                        key={i}
+                        dragon={dragon}
                     />
-                )}
+                ))}
             </div>
         );
-    return(
-        <p> Désolé il n'y a aucun dragon dans la liste</p>
+
+    return (
+        <p>Désolé aucun dragon dans la base</p>
     )
-};
+}
 
 export default Dragons;

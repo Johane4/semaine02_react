@@ -1,18 +1,15 @@
 // Ce fichier va servir à récupérer le nombre de dragons et la date d'éxécution
 // dans la console
 
-// Ce fichier va servir à récupérer le nombre de dragons et la date d'éxécution
-// dans la console
-
 import {
     SET_LOG
 } from "../constants/actions";
 
-const initialState = {
+const stateInit = {
     logs: new Map() // comme un dictionnaire clé/valeur
 }
 
-const reducer = (state = initialState, action ) => {
+const reducer = (state = stateInit, action ) => {
 
     switch (action.type) {
 

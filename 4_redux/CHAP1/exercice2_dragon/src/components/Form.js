@@ -1,9 +1,13 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { set_dragon, add_dragon } from '../actions/actions-types';
+import React from 'react';
+
+import {
+    useSelector, useDispatch
+} from 'react-redux';
+
+import { set_dragon, add_dragon } from '../actions/actions-types'
 
 const Form = () => {
-
-    const { message, dragon } = useSelector(state => state.dragonReducer);
+    const { dragon, message } = useSelector(state => state.dragonReducer );
     const dispatch = useDispatch();
 
     const handleChange = e => {
@@ -18,20 +22,28 @@ const Form = () => {
         dispatch(add_dragon());
     }
 
-    return(
-        <div>
-            {message !== '' && <p>{message}</p>}
-
+    return (
+        <>
+        {/** Attention utilisez des parenthèses pour rendre du contenu multiple */}
+            {message !== '' && (
+                <div className="Form-error">
+                    <p>{message}</p>
+                </div>
+            )}
             <form onSubmit={handleSubmit}>
-                <input 
-                    type='text'
-                    value={dragon}
-                    onChange={handleChange}
-                />
-                <button type='submit'>Ajouter</button>
+                <div>
+                    <input
+                        type="text"
+                        onChange={handleChange}
+                        value={dragon}
+                    />
+                </div>
+                <div>
+                    <button type="submit">Add</button>
+                </div>
             </form>
-        </div>
-    )
+        </>
+    );
 }
 
 export default Form;

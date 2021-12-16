@@ -1,15 +1,19 @@
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import {
+  useDispatch
+} from 'react-redux';
+
 import { delete_dragon } from '../actions/actions-types';
 
-const Dragon = ({dragon}) => {
-    const dispatch = useDispatch();
+const Dragon = ({ dragon }) => {
+  const dispatch = useDispatch();
 
-    return(
-        <div>
-            <p>Nom: {dragon}</p>
-            <button onClick={() => dispatch(delete_dragon(dragon))}>Supprimer {dragon}</button>
-        </div>
-    )
+  return (
+    <div>
+      <p>Name : {dragon}</p>
+      <p><button onClick={() => dispatch(delete_dragon(dragon))}>Delete {dragon}</button></p>
+    </div>
+  );
 }
 
 export default Dragon;
